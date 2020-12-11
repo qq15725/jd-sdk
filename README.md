@@ -33,3 +33,9 @@ $jd = new Application('app_key', 'secret_key');
 // 例如 jd.union.open.goods.jingfen.query 其他接口同理
 $jd->union->open->goods->jingfen->query(521383533703);
 ```
+
+## 已封装
+
+- jd.union.open.goods.query 关键词商品查询接口【申请】
+- jd.union.open.goods.jingfen.query 京粉精选商品查询接口
+- jd.union.open.goods.promotiongoodsinfo.query 根据skuid查询商品信息接口

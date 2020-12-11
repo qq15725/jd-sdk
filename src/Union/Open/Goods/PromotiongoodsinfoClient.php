@@ -7,7 +7,11 @@ use Jd\BaseClient;
 class PromotiongoodsinfoClient extends BaseClient
 {
     /**
+     * 根据skuid查询商品信息接口
+     *
      * @param string $skuIds
+     *
+     * @link https://union.jd.com/openplatform/api/10422
      *
      * @return array
      */

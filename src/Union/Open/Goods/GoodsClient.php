@@ -12,11 +12,19 @@ use SDK\Kernel\Exceptions\InvalidArgumentException;
 class GoodsClient extends BaseClient
 {
     /**
+     * 关键词商品查询接口【申请】
+     *
+     * @param array $query
+     *
+     * @link https://union.jd.com/openplatform/api/10420
+     *
      * @return array
      */
-    public function query()
+    public function query($query = [])
     {
-        return $this->httpPost('jd.union.open.goods.query');
+        return $this->httpPost('jd.union.open.goods.query', [
+            'goodsReqDTO' => $query
+        ]);
     }
 
     /**
