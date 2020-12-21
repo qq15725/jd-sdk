@@ -12,6 +12,7 @@ class ServiceProvider implements ServiceProviderInterface
 {
     protected $providers = [
         Open\ServiceProvider::class,
+        Promotion\ServiceProvider::class,
     ];
 
     /**

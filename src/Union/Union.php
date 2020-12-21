@@ -7,6 +7,7 @@ use SDK\Kernel\Exceptions\InvalidArgumentException;
 
 /**
  * @property \Jd\Union\Open\Open $open
+ * @property \Jd\Union\Promotion\Promotion $promotion
  */
 class Union extends BaseClient
 {
