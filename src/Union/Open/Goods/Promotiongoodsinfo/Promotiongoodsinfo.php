@@ -17,7 +17,7 @@ class Promotiongoodsinfo extends BaseClient
      *
      * @return array
      */
-    public function query(string $skuIds)
+    public function query($skuIds)
     {
         return $this->httpPost('jd.union.open.goods.promotiongoodsinfo.query', [
             'skuIds' => $skuIds
