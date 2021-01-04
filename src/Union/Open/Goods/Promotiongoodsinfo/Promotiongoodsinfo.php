@@ -1,10 +1,10 @@
 <?php
 
-namespace Jd\Union\Open\Goods;
+namespace Jd\Union\Open\Goods\Promotiongoodsinfo;
 
 use Jd\BaseClient;
 
-class PromotiongoodsinfoClient extends BaseClient
+class Promotiongoodsinfo extends BaseClient
 {
     /**
      * 根据skuid查询商品信息接口

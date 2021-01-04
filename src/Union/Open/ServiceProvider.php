@@ -9,6 +9,7 @@ class ServiceProvider implements ServiceProviderInterface
 {
     protected $providers = [
         Goods\ServiceProvider::class,
+        Promotion\ServiceProvider::class,
     ];
 
     public function register(Container $app)

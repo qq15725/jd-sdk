@@ -6,7 +6,8 @@ use Jd\BaseClient;
 use SDK\Kernel\Exceptions\InvalidArgumentException;
 
 /**
- * @property \Jd\Union\Open\Goods\GoodsClient $goods
+ * @property \Jd\Union\Open\Goods\Goods $goods
+ * @property \Jd\Union\Open\Promotion\Promotion $promotion
  */
 class Open extends BaseClient
 {

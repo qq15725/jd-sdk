@@ -7,18 +7,18 @@ use Pimple\ServiceProviderInterface;
 
 class ServiceProvider implements ServiceProviderInterface
 {
+    protected $providers = [
+        Jingfen\ServiceProvider::class,
+        Promotiongoodsinfo\ServiceProvider::class,
+    ];
+
     public function register(Container $app)
     {
         $app['union.open.goods'] = function ($app) {
-            return new GoodsClient($app);
-        };
+            /** @var \Jd\Application $app */
+            $app->registerProviders($this->providers);
 
-        $app['union.open.goods.promotiongoodsinfo'] = function ($app) {
-            return new PromotiongoodsinfoClient($app);
-        };
-
-        $app['union.open.goods.jingfen'] = function ($app) {
-            return new JingfenClient($app);
+            return new Goods($app);
         };
     }
 }

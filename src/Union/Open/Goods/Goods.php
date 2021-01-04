@@ -6,10 +6,10 @@ use Jd\BaseClient;
 use SDK\Kernel\Exceptions\InvalidArgumentException;
 
 /**
- * @property \Jd\Union\Open\Goods\JingfenClient $jingfen
- * @property \Jd\Union\Open\Goods\PromotiongoodsinfoClient $promotiongoodsinfo
+ * @property \Jd\Union\Open\Goods\Jingfen\Jingfen $jingfen
+ * @property \Jd\Union\Open\Goods\Promotiongoodsinfo\Promotiongoodsinfo $promotiongoodsinfo
  */
-class GoodsClient extends BaseClient
+class Goods extends BaseClient
 {
     /**
      * 关键词商品查询接口【申请】

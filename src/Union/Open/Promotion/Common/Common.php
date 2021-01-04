@@ -1,10 +1,10 @@
 <?php
 
-namespace Jd\Union\Promotion;
+namespace Jd\Union\Open\Promotion\Common;
 
 use Jd\BaseClient;
 
-class CommonClient extends BaseClient
+class Common extends BaseClient
 {
     /**
      * 网站/APP获取推广链接接口
