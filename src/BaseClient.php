@@ -19,17 +19,6 @@ class BaseClient extends KernelBaseClient
      */
     protected function request(string $url, string $method = 'GET', array $options = [], $returnRaw = false)
     {
-//        if ($method == 'POST') {
-//            foreach ($options['form_params'] as &$v) {
-//                if (is_array($v)) {
-//                    $v = json_encode($v);
-//                } else if ($v === true) {
-//                    $v = 'true';
-//                } else if ($v === false) {
-//                    $v = 'false';
-//                }
-//            }
-//        }
         return parent::request("?method={$url}", $method, $options, $returnRaw);
     }
 
