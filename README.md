@@ -110,3 +110,8 @@ $jd->union->open->goods->jingfen->query();
 - [ ] 工具商订单行查询接口【申请】 jd.union.open.order.agent.query
 - [ ] 京东注册用户判定接口【申请】 jd.union.open.user.register.validate
 - [ ] 工具商京享红包效果数据查询接口【申请】 jd.union.open.statistics.redpacket.agent.query
+
+## 其他 SDK
+
+ - [淘宝(淘宝联盟) SDK](https://github.com/qq15725/taobao-sdk)
+ - [拼多多(多多客) SDK](https://github.com/qq15725/pdd-sdk)
