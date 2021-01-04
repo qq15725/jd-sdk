@@ -8,6 +8,9 @@ use SDK\Kernel\Exceptions\InvalidArgumentException;
 /**
  * @property \Jd\Union\Open\Goods\Goods $goods
  * @property \Jd\Union\Open\Promotion\Promotion $promotion
+ * @property \Jd\Union\Open\Order\Order $order
+ * @property \Jd\Union\Open\Category\Category $category
+ * @property \Jd\Union\Open\Activity\Activity $activity
  */
 class Open extends BaseClient
 {

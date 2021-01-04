@@ -84,7 +84,7 @@ $jd->union->open->goods->jingfen->query();
 ### [京东联盟API](https://union.jd.com/openplatform/api)
 
 - [x] 京粉精选商品查询接口 jd.union.open.goods.jingfen.query
-- [ ] 订单查询接口 jd.union.open.order.query
+- [x] 订单查询接口 jd.union.open.order.query
 - [x] 关键词商品查询接口【申请】jd.union.open.goods.query
 - [x] 网站/APP获取推广链接接口 jd.union.open.promotion.common.get
 - [x] 根据skuid查询商品信息接口 jd.union.open.goods.promotiongoodsinfo.query
@@ -95,16 +95,16 @@ $jd->union->open->goods->jingfen->query();
 - [ ] 创建推广位【申请】 jd.union.open.position.create
 - [ ] 获取PID【申请】 jd.union.open.user.pid.get
 - [ ] 秒杀商品查询接口【申请】【即将下线】 jd.union.open.goods.seckill.query
-- [ ] 商品类目查询接口 jd.union.open.category.goods.get
-- [ ] 商品详情查询接口 jd.union.open.goods.bigfield.query
+- [x] 商品类目查询接口 jd.union.open.category.goods.get
+- [x] 商品详情查询接口 jd.union.open.goods.bigfield.query
 - [ ] 奖励订单查询接口【申请】 jd.union.open.order.bonus.query
 - [ ] 通过小程序获取推广链接【申请】 jd.union.open.promotion.applet.get
 - [ ] 礼金停止 jd.union.open.coupon.gift.stop
 - [ ] 礼金创建 jd.union.open.coupon.gift.get
 - [ ] 礼金效果数据 jd.union.open.statistics.giftcoupon.query
-- [ ] 活动查询接口 jd.union.open.activity.query
-- [ ] 订单行查询接口 jd.union.open.order.row.query
-- [ ] 猜你喜欢商品推荐 jd.union.open.goods.material.query
+- [x] 活动查询接口 jd.union.open.activity.query
+- [x] 订单行查询接口 jd.union.open.order.row.query
+- [x] 猜你喜欢商品推荐 jd.union.open.goods.material.query
 - [ ] 佣金规则混合接口【申请】 jd.union.open.rule.commission.mix
 - [ ] 京享红包效果数据 jd.union.open.statistics.redpacket.query
 - [ ] 工具商订单行查询接口【申请】 jd.union.open.order.agent.query

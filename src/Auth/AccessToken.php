@@ -21,7 +21,7 @@ class AccessToken extends BaseAccessToken
             'format' => $this->app->config->get('format'),
             'sign_method' => $this->app->config->get('sign_method'),
             'timestamp' => date('Y-m-d H:i:s'),
-            'param_json' => json_encode($data, JSON_FORCE_OBJECT)
+            'param_json' => json_encode($data)
         ];
 
         return array_merge($appendQuery, [
@@ -32,14 +32,15 @@ class AccessToken extends BaseAccessToken
         ]);
     }
 
-    protected function generateSign($params, $secretKey)
+    protected function generateSign($data, $secretKey)
     {
-        ksort($params);
+        ksort($data);
         $stringToBeSigned = $secretKey;
-        foreach ($params as $k => $v) {
-            if (!is_array($v) && "@" != substr($v, 0, 1)) {
-                $stringToBeSigned .= "$k$v";
+        foreach ($data as $k => $v) {
+            if ($v === null || $v === '') {
+                continue;
             }
+            $stringToBeSigned .= "{$k}{$v}";
         }
         unset($k, $v);
         $stringToBeSigned .= $secretKey;
