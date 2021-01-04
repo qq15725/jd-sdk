@@ -46,8 +46,8 @@ $jd->union->open->goods->jingfen->query();
     
 3. 配置.env
     ```dotenv
-    Jd_APPKEY=client_id
-    Jd_APPSECRET=client_secret
+    Jd_APPKEY=app_key
+    Jd_APPSECRET=secret_key
     ```
     
 4. 使用
@@ -69,8 +69,8 @@ $jd->union->open->goods->jingfen->query();
 
 3. 配置.env
     ```dotenv
-    Jd_APPKEY=client_id
-    Jd_APPSECRET=client_secret
+    Jd_APPKEY=app_key
+    Jd_APPSECRET=secret_key
     ```
 
 4. 使用
