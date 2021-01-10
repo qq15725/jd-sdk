@@ -20,10 +20,10 @@ class Material extends BaseClient
      *
      * @return array
      */
-    public function query(int $page = 1, int $perPage = 20, int $eliteId = 1, array $query = [])
+    public function query(int $page = 1, int $perPage = 20, ?int $eliteId = null, array $query = [])
     {
         $query += [
-            'eliteId' => $eliteId,
+            'eliteId' => $eliteId ?: 1,
             'pageIndex' => $page,
             'pageSize' => $perPage,
         ];
