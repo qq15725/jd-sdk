@@ -16,7 +16,7 @@ class Material extends BaseClient
      * @param int $eliteId 频道ID：1.猜你喜欢、2.实时热销、3.大额券、4.9.9包邮
      * @param array $query
      *
-     * @link https://union.jd.com/openplatform/api/11248
+     * @link https://union.jd.com/openplatform/api/13625
      *
      * @return array
      */
