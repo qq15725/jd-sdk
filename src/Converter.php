@@ -100,8 +100,7 @@ class Converter
                     'sales_count' => (int)$data->get('inOrderCount'),
                     'rich_text_images' => [],
                     'url' => $data->get('materialUrl'),
-                    'raw' => $raw,
-                    'coupon' => [
+                    'coupons' => [
                         [
                             'id' => null,
                             'shop_id' => $shopId,
