@@ -49,7 +49,7 @@ class Converter
                     'coupons' => array_map(function ($coupon) use ($data, $shopId, $productId) {
                         $coupon = new Collection($coupon);
                         return [
-                            'id' => null,
+                            'id' => $coupon->get('link'),
                             'shop_id' => $shopId,
                             'product_id' => $productId,
                             'amount' => $coupon->get('discount'),
