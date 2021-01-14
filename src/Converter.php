@@ -41,7 +41,7 @@ class Converter
                     'title' => $data->get('skuName'),
                     'short_title' => $data->get('skuName'),
                     'desc' => null,
-                    'cover' => $data->get('imageInfo.whiteImage'),
+                    'cover' => $data->get('imageInfo.whiteImage', $data->get('imageInfo.imageList.0.url')),
                     'banners' => array_column((array)$data->get('imageInfo.imageList'), 'url'),
                     'sales_count' => (int)$data->get('inOrderCount30DaysSku'),
                     'rich_text_images' => null,
