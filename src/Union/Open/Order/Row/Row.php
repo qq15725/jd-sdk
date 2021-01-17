@@ -15,7 +15,6 @@ class Row extends BaseClient
      * @param int $perPage 每页包含条数，上限为500
      * @param null|string $startTime 开始时间 格式yyyy-MM-dd HH:mm:ss，与endTime间隔不超过1小时
      * @param null|string $endTime 结束时间 格式yyyy-MM-dd HH:mm:ss，与startTime间隔不超过1小时
-     * @param int $type 订单时间查询类型(1：下单时间，2：完成时间（购买用户确认收货时间），3：更新时间
      * @param array $query
      *
      * @link https://union.jd.com/openplatform/api/12707
@@ -27,7 +26,6 @@ class Row extends BaseClient
         int $perPage = 20,
         ?string $startTime = null,
         ?string $endTime = null,
-        int $type = 1,
         array $query = []
     )
     {
@@ -36,7 +34,7 @@ class Row extends BaseClient
             'pageSize' => $perPage,
             'startTime' => $startTime ?: date('Y-m-d H:i:s', time() - 3600),
             'endTime' => $endTime ?: date('Y-m-d H:i:s'),
-            'type' => $type,
+            'type' => 3, // 订单时间查询类型(1：下单时间，2：完成时间（购买用户确认收货时间），3：更新时间
         ];
 
         return $this->httpPost('jd.union.open.order.row.query', [

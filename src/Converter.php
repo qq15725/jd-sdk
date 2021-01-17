@@ -141,8 +141,68 @@ class Converter
         return $data;
     }
 
-    public static function order($raw): array
+    /**
+     * 订单数据转换成统一的数据格式
+     *
+     * @param array $raw
+     * @param bool $retainRaw
+     *
+     * @return array
+     */
+    public static function order(array $raw, $retainRaw = true): array
     {
-        return $raw;
+        if (!$raw) {
+            return [];
+        }
+
+        if (isset($raw[0])) {
+            foreach ($raw as &$itemRaw) {
+                $itemRaw = self::order($itemRaw, $retainRaw);
+            }
+            return $raw;
+        }
+
+        $data = new Collection($raw);
+
+        $data = [
+            'no' => $data->get('orderId'),
+            'parent_no' => $data->get('parentId') == 0 ? $data->get('orderId') : $data->get('parentId'),
+            'site_id' => $data->get('siteId') ?: null,
+            'site_name' => null,
+            'adzone_id' => $data->get('positionId'),
+            'adzone_name' => null,
+            'product_id' => $data->get('skuId'),
+            'product_cover' => $data->get('goodsInfo.imageUrl'),
+            'product_url' => null,
+            'product_title' => $data->get('skuName'),
+            'shop_name' => $data->get('goodsInfo.shopName'),
+            'type' => ['g' => '自营', 'p' => 'POP'][$data->get('goodsInfo.owner')] ?? $data->get('goodsInfo.owner'),
+            'terminal' => ['1' => 'PC', '2' => '无线'][$data->get('orderEmt')] ?? $data->get('orderEmt'),
+            'amount' => $data->get('price'),
+            'commission_rate' => (int)bcmul($data->get('commissionRate'), 100),
+            'commission_amount' => $commissionAmount = (int)bcmul($data->get('actualFee'), 100),
+            'precommission_amount' => (int)bcmul($data->get('estimateFee'), 100),
+            'royalty_amount' => (int)bcmul(
+                bcdiv($commissionAmount, $data->get('finalRate') / 100, 2),
+                (100 - $data->get('finalRate')) / 100
+            ),
+            'status' => $data->get('validCode'),
+            'extension' => [
+                'plus' => $data->get('plus') == 1,
+                'ext1' => $data->get('ext1'),
+                'subUnionId' => $data->get('subUnionId'),
+            ],
+            'created_at' => $data->get('orderTime'),
+            'paid_at' => $data->get('orderTime'),
+            'settlemented_at' => $data->get('payMonth') ? date('Y-m-d H:i:s', $data->get('payMonth')) : null,
+            'refunded' => $data->get('skuReturnNum') > 0,
+        ];
+
+
+        if ($retainRaw) {
+            $data['raw'] = $raw;
+        }
+
+        return $data;
     }
 }

@@ -19,20 +19,19 @@ class Order extends BaseClient
      * @param int $page 页码，返回第几页结果
      * @param int $perPage 每页包含条数，上限为500
      * @param null|string $time 查询时间，建议使用分钟级查询，格式：yyyyMMddHH、yyyyMMddHHmm或yyyyMMddHHmmss，如201811031212 的查询范围从12:12:00--12:12:59
-     * @param int $type 订单时间查询类型(1：下单时间，2：完成时间（购买用户确认收货时间），3：更新时间
      * @param array $query
      *
      * @link https://union.jd.com/openplatform/api/10419
      *
      * @return array
      */
-    public function query(int $page = 1, int $perPage = 20, ?string $time = null, int $type = 1, array $query = [])
+    public function query(int $page = 1, int $perPage = 20, ?string $time = null, array $query = [])
     {
         $query += [
             'pageNo' => $page,
             'pageSize' => $perPage,
-            'time' => $time ?: date('YmdHH'),
-            'type' => $type,
+            'time' => $time ?: date('YmdHM'),
+            'type' => 3, // 订单时间查询类型(1：下单时间，2：完成时间（购买用户确认收货时间），3：更新时间
         ];
 
         return $this->httpPost('jd.union.open.order.query', [
