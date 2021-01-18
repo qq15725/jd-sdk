@@ -194,7 +194,7 @@ class Converter
             ],
             'created_at' => $data->get('orderTime'),
             'paid_at' => $data->get('orderTime'),
-            'settlemented_at' => $data->get('payMonth') ? date('Y-m-d H:i:s', $data->get('payMonth')) : null,
+            'settlemented_at' => $data->get('payMonth') ? date('Y-m-d H:i:s', strtotime($data->get('payMonth'))) : null,
             'refunded' => $data->get('skuReturnNum') > 0,
         ];
 
