@@ -19,7 +19,7 @@ class Activity extends BaseClient
      *
      * @return array
      */
-    public function get(int $page = 1, int $perPage = 20, array $query = [])
+    public function query(int $page = 1, int $perPage = 20, array $query = [])
     {
         $query += [
             'pageIndex' => $page,
