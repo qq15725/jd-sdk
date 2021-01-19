@@ -27,7 +27,7 @@ class Application extends ServiceContainer
         'format' => 'json',
         'sign_method' => 'md5',
         'http' => [
-            'timeout' => 10.0,
+            'timeout' => 20.0,
             'base_uri' => 'https://router.jd.com/api',
         ],
     ];
