@@ -194,7 +194,7 @@ class Converter
             ],
             'created_at' => $data->get('orderTime'),
             'paid_at' => $data->get('orderTime'),
-            'finished_at' => $data->get('finishTime') ?: null,
+            'received_at' => $data->get('finishTime') ?: null,
             'settlemented_at' => $data->get('payMonth')
                 ? date('Y-m-d H:i:s', strtotime($data->get('payMonth')))
                 : null,
