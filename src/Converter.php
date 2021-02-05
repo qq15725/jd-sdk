@@ -34,6 +34,7 @@ class Converter
             case 'jd.union.open.goods.material.query':
                 $productId = $data->get('skuId');
                 $shopId = $data->get('shopInfo.shopId');
+                $owner = $data->get('owner');
                 $data = [
                     'id' => $productId,
                     'shop_id' => $shopId,
@@ -46,7 +47,7 @@ class Converter
                     'sales_count' => (int)$data->get('inOrderCount30DaysSku'),
                     'rich_text_images' => null,
                     'url' => $data->get('promotionInfo.clickURL'),
-                    'coupons' => array_map(function ($coupon) use ($data, $shopId, $productId) {
+                    'coupons' => array_map(function ($coupon) use ($data, $shopId, $productId, $owner) {
                         $coupon = new Collection($coupon);
                         return [
                             'id' => $coupon->get('link'),
@@ -65,11 +66,13 @@ class Converter
                                 'price' => $price = (float)$data->get('priceInfo.lowestCouponPrice'),
                                 'original_price' => (float)$data->get('priceInfo.price'),
                                 'commission_rate' => (float)$data->get('commissionInfo.commissionShare'),
-                                'commission_amount' => (float)\bcmul(
-                                    $price,
-                                    \bcdiv($data->get('commissionInfo.commissionShare'), 100, 2),
-                                    2
-                                ),
+                                'commission_amount' => $owner == 'g'
+                                    ? (float)$data->get('commissionInfo.couponCommission')
+                                    : (float)\bcmul(
+                                        $data->get('commissionInfo.couponCommission'),
+                                        0.9,
+                                        2
+                                    ),
                             ],
                         ];
                     }, (array)$data->get('couponInfo.couponList')),
@@ -86,6 +89,7 @@ class Converter
             default:
                 $shopId = $data->get('shopId');
                 $productId = $data->get('skuId');
+                $owner = $data->get('owner');
                 $data = [
                     'id' => $productId,
                     'shop_id' => $shopId,
@@ -116,11 +120,21 @@ class Converter
                                 'price' => $price = (float)$data->get('unitPrice'),
                                 'original_price' => (float)$data->get('unitPrice'),
                                 'commission_rate' => (float)$data->get('commisionRatioWl'),
-                                'commission_amount' => (float)\bcmul(
-                                    $price,
-                                    \bcdiv($data->get('commisionRatioWl'), 100, 2),
-                                    2
-                                ),
+                                'commission_amount' => $owner == 'g'
+                                    ? (float)\bcmul(
+                                        $price,
+                                        \bcdiv($data->get('commisionRatioWl'), 100, 2),
+                                        2
+                                    )
+                                    : (float)\bcmul(
+                                        \bcmul(
+                                            $price,
+                                            \bcdiv($data->get('commisionRatioWl'), 100, 2),
+                                            2
+                                        ),
+                                        0.9,
+                                        2
+                                    ),
                             ],
                         ]
                     ],
@@ -181,9 +195,12 @@ class Converter
             'amount' => (int)bcmul($data->get('estimateCosPrice'), 100),
             'commission_rate' => (int)bcmul($data->get('commissionRate'), 100),
             'commission_amount' => $commissionAmount = (int)bcmul($data->get('actualFee'), 100),
-            'precommission_amount' => (int)bcmul($data->get('estimateFee'), 100),
+            'precommission_amount' => $precommissionAmount = (int)bcmul($data->get('estimateFee'), 100),
             'royalty_amount' => (int)bcmul(
-                bcdiv($commissionAmount, $data->get('finalRate') / 100, 2),
+                bcdiv(
+                    $commissionAmount ?: $precommissionAmount,
+                    $data->get('finalRate') / 100
+                ),
                 (100 - $data->get('finalRate')) / 100
             ),
             'status' => $data->get('validCode'),
