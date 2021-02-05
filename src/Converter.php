@@ -178,7 +178,7 @@ class Converter
             'shop_name' => $data->get('goodsInfo.shopName'),
             'type' => ['g' => '自营', 'p' => 'POP'][$data->get('goodsInfo.owner')] ?? $data->get('goodsInfo.owner'),
             'terminal' => ['1' => 'PC', '2' => '无线'][$data->get('orderEmt')] ?? $data->get('orderEmt'),
-            'amount' => (int)bcmul($data->get('price'), 100),
+            'amount' => (int)bcmul($data->get('estimateCosPrice'), 100),
             'commission_rate' => (int)bcmul($data->get('commissionRate'), 100),
             'commission_amount' => $commissionAmount = (int)bcmul($data->get('actualFee'), 100),
             'precommission_amount' => (int)bcmul($data->get('estimateFee'), 100),
