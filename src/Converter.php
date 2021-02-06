@@ -35,6 +35,10 @@ class Converter
                 $productId = $data->get('skuId');
                 $shopId = $data->get('shopInfo.shopId');
                 $owner = $data->get('owner');
+                $coupons = (array)$data->get('couponInfo.couponList');
+                if (!$coupons) {
+                    $coupons = [[]];
+                }
                 $data = [
                     'id' => $productId,
                     'shop_id' => $shopId,
@@ -75,7 +79,7 @@ class Converter
                                     ),
                             ],
                         ];
-                    }, (array)$data->get('couponInfo.couponList')),
+                    }, $coupons),
                     'shop' => [
                         'id' => $shopId,
                         'logo' => null,
