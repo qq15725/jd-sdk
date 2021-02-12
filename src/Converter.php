@@ -183,8 +183,10 @@ class Converter
         $data = new Collection($raw);
 
         $data = [
-            'no' => $data->get('orderId'),
-            'parent_no' => $data->get('parentId') == 0 ? $data->get('orderId') : $data->get('parentId'),
+            'no' => $data->get('id'),
+            'parent_no' => $data->get('parentId') == 0
+                ? $data->get('orderId')
+                : $data->get('parentId'),
             'site_id' => $data->get('siteId') ?: null,
             'site_name' => null,
             'adzone_id' => $data->get('positionId'),
